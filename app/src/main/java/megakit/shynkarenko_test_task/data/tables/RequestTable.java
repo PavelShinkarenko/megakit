@@ -8,6 +8,7 @@ import org.sqlite.database.sqlite.SQLiteDatabase;
 
 import megakit.shynkarenko_test_task.network.model.Request;
 import megakit.shynkarenko_test_task.network.model.RequestStatus;
+import megakit.shynkarenko_test_task.network.model.RequestType;
 import ru.arturvasilov.sqlite.core.BaseTable;
 import ru.arturvasilov.sqlite.core.Table;
 import ru.arturvasilov.sqlite.utils.TableBuilder;
@@ -20,17 +21,17 @@ public class RequestTable extends BaseTable<Request> {
 
     public static final Table<Request> TABLE = new RequestTable();
 
-    public static final String ID_REQUEST = "idRequest";
+    public static final String TYPE = "type";
     public static final String STATUS = "status";
     public static final String ERROR = "error";
 
     @Override
     public void onCreate(@NonNull SQLiteDatabase database) {
         TableBuilder.create(this)
-                .textColumn(ID_REQUEST)
+                .textColumn(TYPE)
                 .textColumn(STATUS)
                 .textColumn(ERROR)
-                .primaryKey(ID_REQUEST)
+                .primaryKey(TYPE)
                 .execute(database);
     }
 
@@ -38,7 +39,7 @@ public class RequestTable extends BaseTable<Request> {
     @Override
     public ContentValues toValues(@NonNull Request request) {
         ContentValues values = new ContentValues();
-        values.put(ID_REQUEST, request.getIdRequest());
+        values.put(TYPE, request.getType().name());
         values.put(STATUS, request.getStatus().name());
         values.put(ERROR, request.getError());
         return values;
@@ -47,9 +48,9 @@ public class RequestTable extends BaseTable<Request> {
     @NonNull
     @Override
     public Request fromCursor(@NonNull Cursor cursor) {
-        String request = cursor.getString(cursor.getColumnIndex(ID_REQUEST));
+        RequestType type = RequestType.valueOf(cursor.getString(cursor.getColumnIndex(TYPE)));
         RequestStatus status = RequestStatus.valueOf(cursor.getString(cursor.getColumnIndex(STATUS)));
         String error = cursor.getString(cursor.getColumnIndex(ERROR));
-        return new Request(request, status, error);
+        return new Request(type, status, error);
     }
 }

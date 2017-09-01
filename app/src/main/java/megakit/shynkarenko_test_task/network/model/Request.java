@@ -8,25 +8,19 @@ import android.support.annotation.NonNull;
 
 public class Request {
 
-    private final String idRequest;
-
+    private final RequestType type;
     private RequestStatus status;
-
     private String error;
 
-    public Request(@NonNull String request) {
-        idRequest = request;
-    }
-
-    public Request(@NonNull String request,
+    public Request(@NonNull RequestType type,
                    @NonNull RequestStatus status, @NonNull String error) {
-        idRequest = request;
+        this.type = type;
         this.status = status;
         this.error = error;
     }
 
-    public String getIdRequest() {
-        return idRequest;
+    public RequestType getType() {
+        return type;
     }
 
     public RequestStatus getStatus() {
