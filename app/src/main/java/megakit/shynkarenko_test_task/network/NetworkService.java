@@ -18,7 +18,7 @@ import ru.arturvasilov.sqlite.core.Where;
 
 
 /**
- * Created by 1 on 31.08.2017.
+ * Created by Shynkarenko on 31.08.2017.
  */
 
 public class NetworkService extends IntentService {
@@ -89,7 +89,7 @@ public class NetworkService extends IntentService {
                     .body();
             //clear table and save new data
             SQLite.get().delete(DriverTable.TABLE);
-            SQLite.get().insert(DriverTable.TABLE, drivers);
+            if (drivers != null) SQLite.get().insert(DriverTable.TABLE, drivers);
             request.setStatus(RequestStatus.SUCCESS);
         } catch (IOException e) {
             request.setStatus(RequestStatus.ERROR);
@@ -105,46 +105,34 @@ public class NetworkService extends IntentService {
 
     private void executeSaveDriverRequest(@NonNull Driver driver, @NonNull Request request) {
         try { //save new driver request
+            SQLite.get().insert(DriverTable.TABLE, driver);
             ApiFactory.getDriverService().saveDriver(driver).execute();
             request.setStatus(RequestStatus.SUCCESS);
         } catch (IOException e) {
             request.setStatus(RequestStatus.ERROR);
             request.setError(e.getMessage());
-        } finally {
-            //update REQUEST table
-            SQLite.get().update(RequestTable.TABLE, Where.create().equalTo(RequestTable.TYPE,
-                    request.getType()), request);
-            SQLite.get().notifyTableChanged(RequestTable.TABLE);
         }
     }
 
     private void executeRemoveDriverRequest(@NonNull Driver driver, @NonNull Request request) {
         try { //remove driver request
+            SQLite.get().delete(DriverTable.TABLE, Where.create().equalTo(DriverTable.DRIVER_NAME, driver.getName()));
             ApiFactory.getDriverService().removeDriver(driver).execute();
             request.setStatus(RequestStatus.SUCCESS);
         } catch (IOException e) {
             request.setStatus(RequestStatus.ERROR);
             request.setError(e.getMessage());
-        } finally {
-            //update REQUEST table
-            SQLite.get().update(RequestTable.TABLE, Where.create().equalTo(RequestTable.TYPE,
-                    request.getType()), request);
-            SQLite.get().notifyTableChanged(RequestTable.TABLE);
         }
     }
 
     private void executeUpdateDriverRequest(@NonNull Driver driver, @NonNull Request request) {
         try { //update new driver
-            ApiFactory.getDriverService().removeDriver(driver).execute();
+            SQLite.get().update(DriverTable.TABLE, Where.create().equalTo(DriverTable.DRIVER_NAME, driver.getName()), driver);
+            ApiFactory.getDriverService().updateDriver(driver).execute();
             request.setStatus(RequestStatus.SUCCESS);
         } catch (IOException e) {
             request.setStatus(RequestStatus.ERROR);
             request.setError(e.getMessage());
-        } finally {
-            //update REQUEST table
-            SQLite.get().update(RequestTable.TABLE, Where.create().equalTo(RequestTable.TYPE,
-                    request.getType()), request);
-            SQLite.get().notifyTableChanged(RequestTable.TABLE);
         }
     }
 }

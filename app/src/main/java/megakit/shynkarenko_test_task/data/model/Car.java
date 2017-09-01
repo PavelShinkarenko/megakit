@@ -9,7 +9,10 @@ import java.io.Serializable;
 public class Car implements Serializable {
 
     private String model;
-    private String manufacturer;
+
+    public Car(String model) {
+        this.model = model;
+    }
 
     public String getModel() {
         return model;

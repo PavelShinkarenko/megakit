@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:tools="http://schemas.android.com/tools"
+android:id="@+id/activity_main"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+tools:context="megakit.shynkarenko_test_task.data.presenter.MainActivity">
+
+<EditText
+    android:id="@+id/driver_name"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_alignParentTop="true"
+    android:gravity="center"
+    android:hint="@string/driver_name" />
+
+<TextView
+
+    android:id="@+id/tw"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_below="@+id/driver_name"
+    android:gravity="center"
+    android:text="@string/cars"
+    android:textSize="24dp" />
+
+<ImageButton
+    android:id="@+id/add_car_btn"
+    android:layout_width="30dp"
+    android:layout_height="30dp"
+    android:layout_alignParentEnd="true"
+    android:layout_below="@+id/driver_name"
+    android:background="@mipmap/add_car" />
+
+
+<Button
+    android:id="@+id/add_driver_btn"
+    android:layout_width="match_parent"
+    android:layout_height="40dp"
+    android:layout_alignParentBottom="true"
+    android:background="@color/colorGreen"
+    android:text="@string/add"
+    android:textColor="@color/colorWHITE"
+    android:textSize="20dp"
+    android:textStyle="bold" />
+
+
+<LinearLayout
+    android:id="@+id/cars_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_above="@+id/add_driver_btn"
+    android:layout_below="@+id/tw"
+    android:layout_marginTop="10dp"
+    android:orientation="vertical"
+    android:paddingEnd="80dp"
+    android:paddingStart="80dp">
+
+
+    <EditText
+        android:id="@+id/car_et"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:hint="@string/car_model" />
+
+</LinearLayout>
+
+
+</RelativeLayout>
