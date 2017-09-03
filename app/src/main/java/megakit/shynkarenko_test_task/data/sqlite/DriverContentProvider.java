@@ -14,7 +14,7 @@ import ru.arturvasilov.sqlite.core.SQLiteSchema;
 
 public class DriverContentProvider extends SQLiteContentProvider {
 
-    private static final String DATABASE_NAME = "driver_cars.db";
+    private static final String DATABASE_NAME = "drivers.database";
     private static final String CONTENT_AUTHORITY = "megakit.shynkarenko";
 
     @Override

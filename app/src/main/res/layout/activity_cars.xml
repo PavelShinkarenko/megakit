@@ -4,10 +4,20 @@
     android:id="@+id/activity_cars"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:paddingBottom="@dimen/activity_vertical_margin"
-    android:paddingLeft="@dimen/activity_horizontal_margin"
-    android:paddingRight="@dimen/activity_horizontal_margin"
-    android:paddingTop="@dimen/activity_vertical_margin"
-    tools:context="megakit.shynkarenko_test_task.data.presenter.CarsActivity">
+    android:orientation="vertical"
+    tools:context=".presenter.CarsActivity">
+
+    <ListView
+        android:id="@+id/all_drivers"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@+id/load_from_server"/>
+
+    <Button
+        android:id="@+id/load_from_server"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="@string/load_from_server"/>
 
 </RelativeLayout>

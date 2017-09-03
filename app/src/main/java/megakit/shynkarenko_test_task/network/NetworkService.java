@@ -57,7 +57,7 @@ public class NetworkService extends IntentService {
             SQLite.get().insert(RequestTable.TABLE, savedRequest);
         }
 
-        //notify subscribers
+        //notify subscribers for display progressbar etc
         SQLite.get().notifyTableChanged(RequestTable.TABLE);
 
         //get driver from intent
@@ -111,6 +111,9 @@ public class NetworkService extends IntentService {
         } catch (IOException e) {
             request.setStatus(RequestStatus.ERROR);
             request.setError(e.getMessage());
+        }finally {
+            SQLite.get().update(RequestTable.TABLE, Where.create().equalTo(RequestTable.TYPE,
+                    request.getType()), request);
         }
     }
 
@@ -122,6 +125,9 @@ public class NetworkService extends IntentService {
         } catch (IOException e) {
             request.setStatus(RequestStatus.ERROR);
             request.setError(e.getMessage());
+        }finally {
+            SQLite.get().update(RequestTable.TABLE, Where.create().equalTo(RequestTable.TYPE,
+                    request.getType()), request);
         }
     }
 
@@ -133,6 +139,9 @@ public class NetworkService extends IntentService {
         } catch (IOException e) {
             request.setStatus(RequestStatus.ERROR);
             request.setError(e.getMessage());
+        }finally {
+            SQLite.get().update(RequestTable.TABLE, Where.create().equalTo(RequestTable.TYPE,
+                    request.getType()), request);
         }
     }
 }

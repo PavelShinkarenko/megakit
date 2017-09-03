@@ -12,6 +12,13 @@ public class Driver implements Serializable {
     private String name;
     private List<Car> cars;
 
+    public Driver() {
+    }
+
+    public Driver(String name) {
+        this.name = name;
+    }
+
     public String getName() {
         return name;
     }

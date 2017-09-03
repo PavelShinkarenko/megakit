@@ -2,7 +2,6 @@ package megakit.shynkarenko_test_task.network;
 
 import android.support.annotation.NonNull;
 
-import megakit.shynkarenko_test_task.BuildConfig;
 import okhttp3.OkHttpClient;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
@@ -12,6 +11,8 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public final class ApiFactory {
+
+    private static final String BASE_URL = "https://carsServer.com";
 
     private static OkHttpClient sClient;
 
@@ -37,7 +38,7 @@ public final class ApiFactory {
     @NonNull
     private static Retrofit buildRetrofit() {
         return new Retrofit.Builder()
-                .baseUrl("https://carsServer.com")
+                .baseUrl(BASE_URL)
                 .client(getClient())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();

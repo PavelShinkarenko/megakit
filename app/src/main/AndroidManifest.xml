@@ -4,13 +4,6 @@
 
     <uses-permission android:name="android.permission.INTERNET" />
 
-    <service android:name=".network.NetworkService" />
-
-    <provider
-        android:name=".data.sqlite.DriverContentProvider"
-        android:authorities="megakit.shynkarenko"
-        android:exported="false" />
-
     <application
         android:name=".DriverCarsApp"
         android:allowBackup="true"
@@ -18,14 +11,23 @@
         android:label="@string/app_name"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".data.presenter.MainActivity">
+
+        <activity android:name=".presenter.MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".data.presenter.CarsActivity"></activity>
+        <activity android:name=".presenter.CarsActivity"/>
+
+        <service android:name=".network.NetworkService" />
+
+        <provider
+            android:name=".data.sqlite.DriverContentProvider"
+            android:authorities="megakit.shynkarenko"
+            android:exported="false" />
+
     </application>
 
 </manifest>

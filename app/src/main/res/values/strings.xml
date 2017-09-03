@@ -4,9 +4,11 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="add">add</string>
+    <string name="show_drivers">show drivers</string>
     <string name="cars">cars:</string>
     <string name="driver_name">driver name</string>
     <string name="car_model">car model</string>
     <string name="empty_driver_field">the driver name field must be filled</string>
     <string name="empty_car_field">at least one field "car" must be filled</string>
+    <string name="load_from_server">load from server</string>
 </resources>
